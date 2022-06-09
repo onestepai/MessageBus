@@ -2,23 +2,10 @@ package com.onestep.os.messagebusservice.config;
 
 import com.onestep.os.client.RestfulClient;
 import com.onestep.os.messagebusservice.model.message.request.MessageBusHeartbeatRequestMessage;
-import com.onestep.os.messagebusservice.model.message.request.RoutingHeartbeatRequestMessage;
 import com.onestep.os.messagebusservice.model.message.request.TransmitMessageRequestMessage;
 import com.onestep.os.messagebusservice.model.message.response.MessageBusHeartbeatResponseMessage;
-import com.onestep.os.messagebusservice.model.message.response.RoutingHeartbeatResponseMessage;
 import com.onestep.os.messagebusservice.model.message.response.TransmitMessageResponseMessage;
-import io.swagger.client.ApiClient;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.stereotype.Component;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestClientException;
-import org.springframework.web.util.UriComponentsBuilder;
-
-import java.util.List;
 
 public class OsMessageBusServiceApi  extends RestfulClient {
   private String url;

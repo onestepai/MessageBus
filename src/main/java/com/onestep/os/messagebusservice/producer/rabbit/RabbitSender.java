@@ -1,4 +1,4 @@
-package com.onestep.os.messagebusservice.producer.Rabbit;
+package com.onestep.os.messagebusservice.producer.rabbit;
 
 import com.onestep.os.error.OsError;
 import com.onestep.os.messagebusservice.config.ServiceConfig;
@@ -12,7 +12,6 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Optional;
 
 @Component
 public class RabbitSender implements MessageSender {

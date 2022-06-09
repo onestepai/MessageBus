@@ -6,9 +6,8 @@ server:
     mime-types:
       - application/json
 client:
-  metrics_service_address: ${METRICS_SERVICE_ADDRESS:http://localhost/metrics/}
   os_message_bus_routing_service_address: ${OS_MESSAGE_BUS_ROUTING_SERVICE_ADDRESS:https://dev-cn1.api.1stepai.cn/os-messagebus-routing-service/}
-  #os_message_bus_routing_service_address: ${OS_MESSAGE_BUS_ROUTING_SERVICE_ADDRESS:http://localhost:8086/}
+
 
 opentracing:
   jaeger:
@@ -19,8 +18,7 @@ opentracing:
     probabilistic-sampler:
       sampling-rate: 0.2
 
-proxy: #  base_path: ${PROXY_PATH:core}
-  #  host_path: ${HOST_PATH:api.1step-solution.com/}
+proxy:
   base_path: ${PROXY_PATH:}
   host_path: ${HOST_PATH:}
   http_proxy_host: ${HTTP_PROXY_HOST:}
@@ -37,26 +35,13 @@ spring:
     username: ${RABBITMQ_USERNAME:username}
     password: ${RABBITMQ_PASSWORD:password}
 
-metrics:
-  open: ${METRICS_OPEN:true}
-  platform: os
-  namespace: os_pandora_data_log
-  application: ${METRICS_APPLICATION:azureMonitor} # metricsService, azureMonitor
-azure:
-  application-insights:
-    connection-string: ${AZURE_CONNECTION_STRING:InstrumentationKey=xxxx}
-
 domain: ${DOMAIN:dev}
 marketplace: ${MARKETPLACE:chengdu}
 
 debug:
   log_on: ${DEBUG_LOG_ON:true}
 
-logbackpath: ${LOGBACK_PATH:target/os-messagebus-routing-service.log}
-management:
-  health:
-    elasticsearch:
-      enabled: false
+logbackpath: ${LOGBACK_PATH:target/os-messagebus-service.log}
 
 terminal:
   customer_id: ${CUSTOMER_ID:os-platfrom-train}
