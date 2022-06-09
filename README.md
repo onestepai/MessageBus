@@ -56,3 +56,6 @@ The key pair is very important, and if it is accidentally leaked, the message wi
 
 ## Special network environment
 There are many special cases in the network, for example, some TERMINAL networks do not have a fixed IP to the outside world. In this case, MessageBus divides TERMINAL into two modes: Server and Client. Server is TERMINAL with IP, Client is TERMINAL without IP. Each Client connects to the Server through a TCP long link. Messages sent to Client TERMINAL are forwarded through Server TERMINAL on the path.
+
+![image](https://user-images.githubusercontent.com/107015943/172860479-1a19d712-9247-4e59-9749-4e2ec7d082ee.png)
+
