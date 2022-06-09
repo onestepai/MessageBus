@@ -34,3 +34,25 @@ Messages of MessageBus clients will not be processed and received by other clien
 ### ROUTING
 
 ROUTING is to ensure the stability of data communication to the greatest extent in a complex network environment. For each message sent, MessageBus calculates the best message path to ensure that the message is delivered to the consumer. The concept of ROUTING is used to manage and maintain the connectivity status of each TERMINAL. Calculate the best message path based on the connection status between TERMINALs.
+
+## Encapsulation of the network environment
+MessageBus encapsulates the physical network environment through the abstract TOPIC and GROUP concepts. Developers do not need to consider the real physical environment when designing the system, but set different TOPICs for different messages and different GROUPs for message targets. The information of specific consumers in the physical network is encapsulated and processed by MesageBus.
+
+## Security mechanism
+Client messages are handled independently
+First, the TERMINAL between different clients is independent, and the client's message will not be processed by the TERMINAL of other clients.
+
+### Message encryption
+#### key pair
+Each TOPIC will have a key pair. When sending a message, TERMINAL will obtain the key to encrypt the message before sending the message across the Internet. After the TERMINAL on the consumer side receives the message, it will decrypt it with the public key.
+
+#### Encrypted Message Handling in Messaging
+
+The message path may contain more than the sent TERMINAL and the received TERMINAL, and the path may also contain other transit TERMINALs. These transit TERMINALs are only responsible for delivering messages without decrypting them.
+
+#### How to manage key pairs
+
+The key pair is very important, and if it is accidentally leaked, the message will be stolen. Therefore, a key pair is defined separately for each TOPIC to reduce the impact of key leakage. In addition, the key pair is not stored in TERMINAL, and each time a message is sent, only the encrypted private key is obtained, and a temporary password is obtained at the same time. This temporary password is passed in the message. When decrypting, you need to provide TOPIC, temporary password and TERMINAL's securekey at the same time to obtain the decryption public key. The temporary password will automatically expire in 5 minutes. The securekey of TERMINAL will be obtained and saved in TERMINAL when TERMINAL is registered.
+
+## Special network environment
+There are many special cases in the network, for example, some TERMINAL networks do not have a fixed IP to the outside world. In this case, MessageBus divides TERMINAL into two modes: Server and Client. Server is TERMINAL with IP, Client is TERMINAL without IP. Each Client connects to the Server through a TCP long link. Messages sent to Client TERMINAL are forwarded through Server TERMINAL on the path.
