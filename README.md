@@ -13,3 +13,24 @@ There are great differences in the communication methods and processing difficul
 
 ### Security issue
 At the meantime, the process of crossing the Internet exposes the content of the message to the Internet, and there are many security risks even if SSL communication is used.
+
+## Concept
+### TOPIC
+
+Similar to other mainstream messaging frameworks, the concept of TOPIC is used to define the sending of different messages. After MessageBus receives the Topic, it knows how the message is distributed.
+
+### GROUP
+
+When a producer sends a message through TOPIC, the consumer receives and acknowledges the message. The message of the same TOPIC may need to have one consumer or multiple consumers. If a consumer acknowledges a message, other potential consumers will not process the message. GROUP defines multiple groups for the same TOPIC. Each group is guaranteed to receive messages. At the same time, the groups will not affect each other because consumers confirm messages.
+
+### TERMINAL
+
+Each GROUP will add multiple terminals (TERMINAL). Each terminal is an instance of MessageBus in a local area network. Each instance of MessageBus handles messaging both inside and outside the local area network, and communicates with the final consumer.
+
+### CUSTOMER
+
+Messages of MessageBus clients will not be processed and received by other clients TERMINAL. To this end, MessageBus defines the concept of CUSTOMER. Each CUSTOMER can define its own TERMINAL to ensure that its own TOPIC will only go through its own TERMINAL and will not be processed by other customers' TERMINALs.
+
+### ROUTING
+
+ROUTING is to ensure the stability of data communication to the greatest extent in a complex network environment. For each message sent, MessageBus calculates the best message path to ensure that the message is delivered to the consumer. The concept of ROUTING is used to manage and maintain the connectivity status of each TERMINAL. Calculate the best message path based on the connection status between TERMINALs.
