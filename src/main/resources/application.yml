@@ -1,0 +1,81 @@
+server:
+  port: 8080
+  compression:
+    enabled: true
+    min-response-size: 1024
+    mime-types:
+      - application/json
+client:
+  metrics_service_address: ${METRICS_SERVICE_ADDRESS:http://localhost/metrics/}
+  os_message_bus_routing_service_address: ${OS_MESSAGE_BUS_ROUTING_SERVICE_ADDRESS:https://dev-cn1.api.1stepai.cn/os-messagebus-routing-service/}
+  #os_message_bus_routing_service_address: ${OS_MESSAGE_BUS_ROUTING_SERVICE_ADDRESS:http://localhost:8086/}
+
+opentracing:
+  jaeger:
+    log-spans: true
+    enabled: true
+    http-sender:
+      url: ${JAEGER_COLLECTOR_ADDRESS:http://jaeger-collector.default.svc.cluster.local:14268/api/traces}
+    probabilistic-sampler:
+      sampling-rate: 0.2
+
+proxy: #  base_path: ${PROXY_PATH:core}
+  #  host_path: ${HOST_PATH:api.1step-solution.com/}
+  base_path: ${PROXY_PATH:}
+  host_path: ${HOST_PATH:}
+  http_proxy_host: ${HTTP_PROXY_HOST:}
+  http_proxy_port: ${HTTP_PROXY_PORT:8080}
+
+spring:
+  application:
+    name: os-messagebus-service
+  baseline-on-migrate: true
+
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USERNAME:username}
+    password: ${RABBITMQ_PASSWORD:password}
+
+metrics:
+  open: ${METRICS_OPEN:true}
+  platform: os
+  namespace: os_pandora_data_log
+  application: ${METRICS_APPLICATION:azureMonitor} # metricsService, azureMonitor
+azure:
+  application-insights:
+    connection-string: ${AZURE_CONNECTION_STRING:InstrumentationKey=xxxx}
+
+domain: ${DOMAIN:dev}
+marketplace: ${MARKETPLACE:chengdu}
+
+debug:
+  log_on: ${DEBUG_LOG_ON:true}
+
+logbackpath: ${LOGBACK_PATH:target/os-messagebus-routing-service.log}
+management:
+  health:
+    elasticsearch:
+      enabled: false
+
+terminal:
+  customer_id: ${CUSTOMER_ID:os-platfrom-train}
+  terminal_id: ${TERMINAL_ID:xiahui}
+  secure_key: ${SECURE_KEY:e628ed6f-6880-4349-9f6c-8ea49b400231}
+  consumer:
+    consumer_type: ${CONSUMER_TYPE:kafka}
+    exchange_name: ${CONSUMER_EXCHANGE_NAME:test_topic}
+    address: ${CONSUMER_ADDRESS:address}
+    port: ${CONSUMER_PORT:port}
+    username: ${CONSUMER_USERNAME:username}
+    password: ${ECONSUMER_PASSWORDXCHANGE_NAME:password}
+    concurrency: ${CONSUMER_CONCURRENCY:kafka}
+    acknowledgeMode: ${CONSUMER_ACKNOWLEDGE_MODEL:kafka}
+    maxConcurrency: ${CONSUMER_MAX_CONCURRENCY:kafka}
+    prefetch: ${PREFETCH:kafka}
+  run_mode: ${RUN_MODE:client}
+  server:
+    url: ${NETTY_SERVER_HOST:dev-cn1-mb.socket.1stepai.cn}
+    port: ${NETTY_SERVER_PORT:30001}
+  client:
+    port: ${NETTY_CLIENT_PORT:30001}
