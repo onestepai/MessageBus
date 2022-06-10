@@ -9,7 +9,7 @@ To build a unified communication platform, it can meet the needs of intra-LAN an
 When developing a system, it is often necessary to consider various network environments, which increases the difficulty of system design and development. The reason is that the physical network environment is directly exposed in the system, and designers and developers need to design heterogeneous system interfaces for different network communications. Encapsulating the physical environment and exposing only the concept of communication between system services will greatly reduce the difficulty of development.
 
 ### unstable network environment
-There are great differences in the communication methods and processing difficulties between services within a local area network and across the Internet. For cross-domain Internet communication, it is more complicated, especially for cross-regional communication, which also involves the issue of whether the network is smooth.
+There are great differences in the communication methods and processing difficulties between services within a local area network and across the Internet. Especially the cross-domain Internet communication, it is more complicated, especially for cross-regional communication, which also involves the issue of whether the network is smooth.
 
 ### Security issue
 At the meantime, the process of crossing the Internet exposes the content of the message to the Internet, and there are many security risks even if SSL communication is used.
@@ -58,5 +58,43 @@ The key pair is very important, and if it is accidentally leaked, the message wi
 There are many special cases in the network, for example, some TERMINAL networks do not have a fixed IP to the outside world. In this case, MessageBus divides TERMINAL into two modes: Server and Client. Server is TERMINAL with IP, Client is TERMINAL without IP. Each Client connects to the Server through a TCP long link. Messages sent to Client TERMINAL are forwarded through Server TERMINAL on the path.
 
 ![image](https://user-images.githubusercontent.com/107015943/172992939-54b92557-0905-4609-8ebf-1c3e00a90293.png)
+
+
+## Steps
+* ### step 1: create customer
+>  call createMessageBusCustomer() request to [1step-message-bus-routing](https://github.com/onestepai/MessageBusRoutingService)
+>
+>  customer should safely store the returned secure_keys
+>
+* ### step 2: create terminal
+>  call createTerminal() request to [1step-message-bus-routing](https://github.com/onestepai/MessageBusRoutingService)
+>
+>  customer could start message-bus service after this step.
+>
+* ### step 3: create terminal group
+>  call createTerminal() request to [1step-message-bus-routing](https://github.com/onestepai/MessageBusRoutingService)
+>
+* ### step 4: add terminal(s) to terminal group
+>  call addTerminalToGroup() request to [1step-message-bus-routing](https://github.com/onestepai/MessageBusRoutingService)
+>
+>  customer could add single or multiple terminals into terminal group
+>
+* ### step 5: create topic
+>  call createMessageBusTopic() request to [1step-message-bus-routing](https://github.com/onestepai/MessageBusRoutingService)
+>
+* ### step 6: add some groups to topic
+>  call addGroupToTopic() request to [1step-message-bus-routing](https://github.com/onestepai/MessageBusRoutingService)
+>
+>  after this step, customer finished setting up message bus and related topics, next could send/receive messages.
+>
+* ### step 7: send message(s)
+>  call sendMessage() request to [1step-message-bus](https://github.com/onestepai/MessageBus)
+>
+>  message(s) will be sent out based upon topic, target message buses which are listening to the same topic will receive the messages and finally route to downstream application.
+
+
+
+## License
+> Copyright 2022 1step.ai Inc.
 
 
