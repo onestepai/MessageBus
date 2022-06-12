@@ -63,12 +63,16 @@ There are many special cases in the network, for example, some TERMINAL networks
 ## Steps
 * ### step 1: create customer
 >  call createMessageBusCustomer() request to [1step-message-bus-routing](https://github.com/onestepai/MessageBusRoutingService)
->
+>  
 >  customer should safely store the returned secure_keys
 >
 * ### step 2: create terminal
 >  call createTerminal() request to [1step-message-bus-routing](https://github.com/onestepai/MessageBusRoutingService)
->
+>  Put your customer ID, terminal ID and secure key of terminal returned from above api to application.yml file. customer Id is returned from createMessageBusCustomer. Terminal Id and secure key are returned from createTerminal.
+>  terminal:
+      customer_id:
+      terminal_id:
+      secure_key:
 >  customer could start message-bus service after this step.
 >
 * ### step 3: create terminal group
@@ -88,7 +92,7 @@ There are many special cases in the network, for example, some TERMINAL networks
 >  after this step, customer finished setting up message bus and related topics, next could send/receive messages.
 >
 * ### step 7: send message(s)
->  call sendMessage() request to [1step-message-bus](https://github.com/onestepai/MessageBus)
+>  call sendMessage() request to your message bus server instance [1step-message-bus](https://github.com/onestepai/MessageBus)
 >
 >  message(s) will be sent out based upon topic, target message buses which are listening to the same topic will receive the messages and finally route to downstream application.
 
