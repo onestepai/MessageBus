@@ -69,10 +69,10 @@ There are many special cases in the network, for example, some TERMINAL networks
 * ### step 2: create terminal
 >  call createTerminal() request to [1step-message-bus-routing](https://github.com/onestepai/MessageBusRoutingService)
 >  Put your customer ID, terminal ID and secure key of terminal returned from above api to application.yml file. customer Id is returned from createMessageBusCustomer. Terminal Id and secure key are returned from createTerminal.
->  terminal:
->       customer_id:
->       terminal_id:
->       secure_key:
+*  terminal:
+*       customer_id:
+*       terminal_id:
+*       secure_key:
 >  customer could start message-bus service after this step.
 >
 * ### step 3: create terminal group
