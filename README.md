@@ -8,7 +8,7 @@ To build a unified communication platform, it can meet the needs of intra-LAN an
 ### The trouble of the physical network environment to the system
 When developing a system, it is often necessary to consider various network environments, which increases the difficulty of system design and development. The reason is that the physical network environment is directly exposed in the system, and designers and developers need to design heterogeneous system interfaces for different network communications. Encapsulating the physical environment and exposing only the concept of communication between system services will greatly reduce the difficulty of development.
 
-### unstable network environment
+### Unstable network environment
 There are great differences in the communication methods and processing difficulties between services within a local area network and across the Internet. Especially the cross-domain Internet communication, it is more complicated, especially for cross-regional communication, which also involves the issue of whether the network is smooth.
 
 ### Security issue
