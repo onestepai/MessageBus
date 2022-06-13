@@ -97,10 +97,12 @@ MessageBus requires JDK 1.8 or higher.
 >
 >  after this step, customer finished setting up message bus and related topics, next could send/receive messages.
 >
-* ### step 7: send message(s)
->  call sendMessage() request from your service to your message bus terminal instance [1step-message-bus](https://dev-cn1.api.1stepai.cn/os-messagebus-routing-service/swagger-ui.html)
+* ### step 7: send/recieve message(s)
+>  call sendMessage() request from service to your message bus terminal instance [1step-message-bus](https://dev-cn1.api.1stepai.cn/os-messagebus-routing-service/swagger-ui.html). 
 >
 >  message(s) will be sent out based upon topic, target message buses which are listening to the same topic will receive the messages and finally route to downstream application.
+
+> Services are able to use https://github.com/onestepai/MessageBusSpringBootStarter instead of implement sending and recieving messages.
 
 
 
