@@ -99,6 +99,6 @@ There are many special cases in the network, for example, some TERMINAL networks
 
 
 ## License
-> Copyright 2022 1step.ai Inc.
+> Copyright 2022 1STEP.AI LLC.
 
 
