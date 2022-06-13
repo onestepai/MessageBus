@@ -60,15 +60,20 @@ There are many special cases in the network, for example, some TERMINAL networks
 ![image](https://user-images.githubusercontent.com/107015943/172992939-54b92557-0905-4609-8ebf-1c3e00a90293.png)
 
 
+## Requirement
+MessageBus requires JDK 1.8 or higher.
+
+
 ## Steps
 * ### step 1: create customer
->  call createMessageBusCustomer() request to [1step-message-bus-routing](https://github.com/onestepai/MessageBusRoutingService)
+>  Please contact with us by email info@1step.ai with your name or company name, we will provide the customer id and secure key to you.
 >  
->  customer should safely store the returned secure_keys
+>  Please safely store the secure key. 
 >
 * ### step 2: create terminal
->  call createTerminal() request to [1step-message-bus-routing](https://github.com/onestepai/MessageBusRoutingService)
->  Put your customer ID, terminal ID and secure key of terminal returned from above api to application.yml file. customer Id is returned from createMessageBusCustomer. Terminal Id and secure key are returned from createTerminal.
+>  call createTerminal() request to [1step-message-bus-routing](https://dev-cn1.api.1stepai.cn/os-messagebus-routing-service/swagger-ui.html)
+>  The terminal type should be 0(means server) or 1(means client), and provide server url if it is a server terminal. The terminal Id and terminal secure key are returned from createTerminal.
+>  Put your customer ID, terminal ID and terminal secure key of the terminal in application.yml under resources folder. 
 *  terminal:
 *       customer_id:
 *       terminal_id:
@@ -76,23 +81,24 @@ There are many special cases in the network, for example, some TERMINAL networks
 >  customer could start message-bus service after this step.
 >
 * ### step 3: create terminal group
->  call createTerminal() request to [1step-message-bus-routing](https://github.com/onestepai/MessageBusRoutingService)
+>  call createTerminalGroup() request to [1step-message-bus-routing](https://dev-cn1.api.1stepai.cn/os-messagebus-routing-service/swagger-ui.html)
+>  The terminal group Id returned from the API will be used later.
 >
 * ### step 4: add terminal(s) to terminal group
->  call addTerminalToGroup() request to [1step-message-bus-routing](https://github.com/onestepai/MessageBusRoutingService)
+>  call addTerminalToGroup() request to [1step-message-bus-routing](https://dev-cn1.api.1stepai.cn/os-messagebus-routing-service/swagger-ui.html)
 >
 >  customer could add single or multiple terminals into terminal group
 >
 * ### step 5: create topic
->  call createMessageBusTopic() request to [1step-message-bus-routing](https://github.com/onestepai/MessageBusRoutingService)
+>  call createMessageBusTopic() request to [1step-message-bus-routing](https://dev-cn1.api.1stepai.cn/os-messagebus-routing-service/swagger-ui.html)
 >
 * ### step 6: add some groups to topic
->  call addGroupToTopic() request to [1step-message-bus-routing](https://github.com/onestepai/MessageBusRoutingService)
+>  call addGroupToTopic() request to [1step-message-bus-routing](https://dev-cn1.api.1stepai.cn/os-messagebus-routing-service/swagger-ui.html)
 >
 >  after this step, customer finished setting up message bus and related topics, next could send/receive messages.
 >
 * ### step 7: send message(s)
->  call sendMessage() request to your message bus server instance [1step-message-bus](https://github.com/onestepai/MessageBus)
+>  call sendMessage() request from your service to your message bus terminal instance [1step-message-bus](https://dev-cn1.api.1stepai.cn/os-messagebus-routing-service/swagger-ui.html)
 >
 >  message(s) will be sent out based upon topic, target message buses which are listening to the same topic will receive the messages and finally route to downstream application.
 
