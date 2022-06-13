@@ -102,7 +102,7 @@ MessageBus requires JDK 1.8 or higher.
 >
 >  message(s) will be sent out based upon topic, target message buses which are listening to the same topic will receive the messages and finally route to downstream application.
 
-> Services are able to use https://github.com/onestepai/MessageBusSpringBootStarter instead of implement sending and recieving messages.
+> Services are able to use [MessageBusSpringBootStarter](https://github.com/onestepai/MessageBusSpringBootStarter) instead of implement sending and recieving messages.
 
 
 
