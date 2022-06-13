@@ -73,11 +73,12 @@ MessageBus requires JDK 1.8 or higher.
 * ### step 2: create terminal
 >  call createTerminal() request to [1step-message-bus-routing](https://dev-cn1.api.1stepai.cn/os-messagebus-routing-service/swagger-ui.html)
 >  The terminal type should be 0(means server) or 1(means client), and provide server url if it is a server terminal. The terminal Id and terminal secure key are returned from createTerminal.
->  Put your customer ID, terminal ID and terminal secure key of the terminal in application.yml under resources folder. 
+>  Put your customer ID, terminal ID, terminal secure key and run_mode of the terminal in application.yml under resources folder. 
 *  terminal:
 *       customer_id:
 *       terminal_id:
 *       secure_key:
+*       run_mode:(server/client)
 >  customer could start message-bus service after this step.
 >
 * ### step 3: create terminal group
@@ -98,7 +99,7 @@ MessageBus requires JDK 1.8 or higher.
 >  after this step, customer finished setting up message bus and related topics, next could send/receive messages.
 >
 * ### step 7: send/recieve message(s)
->  You are able to configure the messaging framework as kafka or rabbit in your local network in application.yml in resources folder. Services do not need to know messaging frameworks. They are able to use [MessageBusSpringBootStarter](https://github.com/onestepai/MessageBusSpringBootStarter) which encapsulate the messaging frameworks instead of implement sending and recieving messages. 
+>  You are able to configure the messaging framework as Kafka or rabbitMQ in your local network in application.yml in resources folder. Services do not need to know messaging frameworks. They are able to use [MessageBusSpringBootStarter](https://github.com/onestepai/MessageBusSpringBootStarter) which encapsulate the messaging frameworks instead of implement sending and recieving messages. 
 >  call sendMessage() request from service to your message bus terminal instance [1step-message-bus](https://dev-cn1.api.1stepai.cn/os-messagebus-routing-service/swagger-ui.html). 
 >
 >  message(s) will be sent out based upon topic, target message buses which are listening to the same topic will receive the messages and finally route to downstream application.
