@@ -99,7 +99,7 @@ MessageBus requires JDK 1.8 or higher.
 >  after this step, customer finished setting up message bus and related topics, next could send/receive messages.
 >
 * ### step 7: send/recieve message(s)
->  You are able to configure the messaging framework as Kafka or rabbitMQ in your local network in application.yml in resources folder. Services do not need to know messaging frameworks. They are able to use [1step-message-bus-springboot-starter](https://github.com/onestepai/MessageBusSpringBootStarter) which encapsulate the messaging frameworks instead of implement sending and recieving messages. 
+>  In application.yml in resources folder, you are able to configure the messaging framework as Kafka or rabbitMQ in your local network . Services do not need to know messaging frameworks. They are able to use [1step-message-bus-springboot-starter](https://github.com/onestepai/MessageBusSpringBootStarter) which encapsulate the messaging frameworks instead of implement sending and recieving messages. 
 >  call sendMessage() request from service to your message bus terminal instance [1step-message-bus](https://prod-cn1.api.1stepai.cn/os-messagebus-routing-service/swagger-ui.html). 
 >
 >  message(s) will be sent out based upon topic, target message buses which are listening to the same topic will receive the messages and finally route to downstream application.
