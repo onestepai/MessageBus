@@ -105,9 +105,3 @@ MessageBus requires JDK 1.8 or higher.
 >  message(s) will be sent out based upon topic, target message buses which are listening to the same topic will receive the messages and finally route to downstream application.
 
 
-
-
-## License
-> Copyright 2022 1STEP.AI LLC.
-
-
